@@ -21,10 +21,7 @@ object AverageColor extends App with LazyLogging {
     logger.info("test finished")
   }
 
-  def calculateAverageColor(fileName: String): Unit = {
-    var redBucket = 0
-    var greenBucket = 0
-    var blueBucket = 0
+  def calculateAverageColor(fileName: String): Color = {
     var image: BufferedImage = null
     try {
       image = ImageIO.read(new File(fileName))
@@ -37,16 +34,11 @@ object AverageColor extends App with LazyLogging {
       y <- 0 until image.getHeight
     } yield new Color(image.getRGB(x, y))
 
-    colors.foreach { c =>
-      redBucket += c.getRed
-      greenBucket += c.getGreen
-      blueBucket += c.getBlue
-    }
-    redBucket = redBucket / colors.size
-    greenBucket = greenBucket / colors.size
-    blueBucket = blueBucket / colors.size
+    val totals = colors.foldLeft((0,0,0)){(z,c) => (z._1 + c.getRed, z._2 + c.getGreen, z._3 + c.getBlue)}
+    val averageColor = new Color(totals._1 / colors.size, totals._2 / colors.size, totals._3 / colors.size )
 
-    logger.info("Average color in {} file: {},{},{}", fileName, redBucket, greenBucket, blueBucket)
+    logger.info("Average color in {} file: {},{},{}", fileName, averageColor.getRed, averageColor.getGreen, averageColor.getBlue)
 
+    averageColor
   }
 }
