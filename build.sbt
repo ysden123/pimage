@@ -23,10 +23,12 @@ lazy val commonSettings = Seq(
   )
 )
 
-lazy val averageColor = project.in(file("average-color"))
+unmanagedJars in Compile += file("lib/opencv-332.jar")
+
+lazy val pimage = project.in(file("."))
   .settings(commonSettings)
   .settings(
-    name := "average-color"
+    name := "pimage"
   )
 
 parallelExecution in Test := true
