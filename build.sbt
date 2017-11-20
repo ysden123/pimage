@@ -23,7 +23,7 @@ lazy val commonSettings = Seq(
   )
 )
 
-unmanagedJars in Compile += file("lib/opencv-332.jar")
+unmanagedJars in Compile += file("lib/opencv-331.jar")
 
 lazy val pimage = project.in(file("."))
   .settings(commonSettings)
