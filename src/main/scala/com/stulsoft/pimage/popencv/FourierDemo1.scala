@@ -1,8 +1,6 @@
 package com.stulsoft.pimage.popencv
 
-import org.opencv.core._
-import com.sun.javafx.iio.common.ImageTools
-import org.opencv.core.{Core, CvType, Mat, Rect}
+import org.opencv.core.{Core, CvType, Mat, Rect, _}
 import org.opencv.imgcodecs.Imgcodecs
 import org.opencv.imgproc.Imgproc
 
@@ -12,6 +10,7 @@ import org.opencv.imgproc.Imgproc
 object FourierDemo1 extends App {
   run("lena.png")
   run("people.jpg")
+  run("square.png")
 
   def run(srcFileName:String): Unit = {
     println("==>run")
